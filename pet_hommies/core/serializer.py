@@ -16,6 +16,7 @@ class AnimalInfoSerializer(serializers.ModelSerializer):
                   'tips',
                   'cell',
                   'tail',
+                  'wool', 'size', 'home', 'color',
                   'breed', 'gender', 'mark_id',
                   'date_sterilization',
                   'socialized',

@@ -75,31 +75,7 @@ for _, row in reader.iterrows():
     try:
         animal = Animal.objects.create(
             card_id=row[1],
-            age=row[3],
-            weight=row[4],
-            nickname=row[5],
-            gender=gender,
-            breed=breed,
-            # color=color,
-            # wool=wool,
-            # ears=ears,
-            tail=tail,
-            # size=row[12],
-            tips=row[13],
-            mark_id=row[15],
-            date_sterilization=row[16],
-            socialized=parse_socialized(row[18]),
-            admission_id=row[19],
-            # admission_id_date=parse_datetime(row[20]),
-            catch_id=row[22],
-            catch_address=row[23],
-            # admission_date=parse_datetime(row[36]),
-            # home=home
-        )
-    except (UniqueViolation, IntegrityError):
-        animal = Animal.objects.get(
-            card_id=row[1],
-            age=row[3],
+            # age=str(row[3]),
             weight=row[4],
             nickname=row[5],
             gender=gender,
@@ -114,10 +90,14 @@ for _, row in reader.iterrows():
             date_sterilization=row[16],
             socialized=parse_socialized(row[18]),
             admission_id=row[19],
-            # admission_id_date=parse_datetime(row[20]),
+            admission_id_date=parse_datetime(str(row[20])),
             catch_id=row[22],
             catch_address=row[23],
-            # admission_date=parse_datetime(row[36]),
-            # home=home
+            admission_date=parse_datetime(str(row[36])),
+            home=home
         )
+    except (UniqueViolation, IntegrityError):
+        pass
+    index = _
+
 #todo:добаваить округ и врача + всяких лиц
