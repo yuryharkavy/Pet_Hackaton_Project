@@ -24,7 +24,7 @@ class AnimalView(APIView):
 class AnimalCardView(View):
     def get(self, request, animal_id):
         animal = Animal.objects.get(id=int(animal_id))
-        doc = DocxTemplate('/Users/dimasce/Desktop/Pet_Hackaton_Project/pet_hommies/core/templates/animal_card.docx')
+        doc = DocxTemplate('core/templates/animal_card.docx')
         context = {
             'card_id': animal.card_id,
             'address': animal.home.address,
