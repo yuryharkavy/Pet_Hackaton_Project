@@ -28,7 +28,9 @@ class AnimalCardView(View):
         context = {
             'card_id': animal.card_id,
             'address': animal.home.address,
-            'organization': animal.home.organization
+            'organization': animal.home.organization,
+            'nickname': animal.nickname,
+            # 'breed': animal.breed_id.
         }
         doc.render(context)
         doc.save('temp.doc')
