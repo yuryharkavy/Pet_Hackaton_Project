@@ -2,6 +2,16 @@ from django.db import models
 
 
 # Create your models here.
+
+class AnimalKind(models.Model):
+    name = models.CharField(max_length=30, primary_key=True)
+
+
+class Breed(models.Model):
+    animal_kind = models.ForeignKey(AnimalKind, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30, primary_key=True)
+
+
 class Animal(models.Model):
     card_id = models.CharField(max_length=8)
     age = models.IntegerField
@@ -9,6 +19,7 @@ class Animal(models.Model):
     nickname = models.CharField(max_length=20)
     tips = models.TextField
     cell = models.IntegerField
+    breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
     mark_id = models.IntegerField(primary_key=True)
     date_sterilization = models.CharField(max_length=30)
     socialized = models.BooleanField
@@ -35,5 +46,3 @@ class Animal(models.Model):
     vaccine_series = models.IntegerField
     inspection_date = models.DateField
     inspection_result = models.IntegerField
-
-# class Breed(models.Model):
