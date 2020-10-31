@@ -9,19 +9,28 @@ class Breed(models.Model):
     animal_kind = models.ForeignKey(AnimalKind, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
 
+    class Meta:
+        unique_together = ('animal_kind', 'name')
+
 
 class Gender(models.Model):
     name = models.CharField(max_length=30, unique=True)
 
 
 class Color(models.Model):
-    animal_kind = models.ForeignKey(AnimalKind, on_delete=models.CASCADE)
+    animal_kind = models.ForeignKey(AnimalKind, on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=30)
+
+    class Meta:
+        unique_together = ('animal_kind', 'name')
 
 
 class Wool(models.Model):
-    animal_kind = models.ForeignKey(AnimalKind, on_delete=models.CASCADE)
+    animal_kind = models.ForeignKey(AnimalKind, on_delete=models.DO_NOTHING)
     type = models.CharField(max_length=30)
+
+    class Meta:
+        unique_together = ('animal_kind', 'type')
 
 
 class Ears(models.Model):
@@ -63,9 +72,9 @@ class Animal(models.Model):
     nickname = models.CharField(max_length=20)
     tips = models.TextField()
     cell = models.IntegerField()
-    tail = models.ForeignKey(Tail, on_delete=models.CASCADE)
-    breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
-    gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
+    tail = models.ForeignKey(Tail, on_delete=models.DO_NOTHING)
+    breed = models.ForeignKey(Breed, on_delete=models.DO_NOTHING)
+    gender = models.ForeignKey(Gender, on_delete=models.DO_NOTHING)
     mark_id = models.IntegerField(unique=True)
     date_sterilization = models.CharField(max_length=30)
     socialized = models.BooleanField()
@@ -82,7 +91,7 @@ class Animal(models.Model):
     knock_out_reason = models.TextField()
     knock_out_id = models.CharField(unique=True, max_length=20)
     worker_name = models.CharField(max_length=50)
-    departure_reason = models.ForeignKey(DepartureReason, on_delete=models.CASCADE)
+    departure_reason = models.ForeignKey(DepartureReason, on_delete=models.DO_NOTHING)
     parasite_treatment_id = models.IntegerField()
     parasite_treatment_date = models.DateField()
     parasite_treatment_drug = models.CharField(max_length=50)

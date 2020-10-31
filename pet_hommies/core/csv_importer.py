@@ -1,7 +1,7 @@
 import pandas as pd
 from core.models import *
 
-from pet_hommies.core.models import *
+# from pet_hommies.core.models import *
 
 
 def import_data(filename='/Users/yuranous/PycharmProjects/Pet_Hackaton_Project/pet_hommies/core/data.xlsx'):
