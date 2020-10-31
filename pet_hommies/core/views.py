@@ -22,3 +22,5 @@ class AnimalInfoView(APIView):
         animals = Animal.objects.filter(socialized=True)
         serializer = AnimalInfoSerializer(animals, many=True)
         return Response({"animals": serializer.data})
+
+
