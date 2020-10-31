@@ -7,8 +7,8 @@ schema_view = get_swagger_view(title='Pets\' Hommies Api')
 
 urlpatterns = [
     path('animals/', AnimalView.as_view()),
-    path('table/', AnimalTableInfo),
     path('get_animals/', MainAnimalInfoView.as_view()),
     path('swagger/', schema_view),
     path('card/<animal_id>/', AnimalCardView.as_view()),
+    path('table/', AnimalTableInfo),
 ]

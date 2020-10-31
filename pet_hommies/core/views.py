@@ -5,7 +5,7 @@ from django.http import HttpResponseNotFound, FileResponse
 from docxtpl import DocxTemplate
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from django.shortcuts import render
 from .models import AnimalKind, Animal
 from .serializer import AnimalTypeSerializer
 
