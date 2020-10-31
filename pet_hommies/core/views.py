@@ -5,7 +5,7 @@ from django.http import FileResponse, HttpResponse
 from docxtpl import DocxTemplate
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.views import View
+from django.shortcuts import render
 from .models import AnimalKind, Animal
 from .serializer import AnimalTypeSerializer
 
@@ -51,3 +51,7 @@ class MainAnimalInfoView(APIView):
                                     in list(animals)]
         # serializer = AnimalInfoSerializer(interesting_info_animals, many=True)
         return Response({"animals": interesting_info_animals})
+
+
+def AnimalTableInfo(request):
+    return render(request, 'people.html', {'people': AnimalKind.objects.all()})
