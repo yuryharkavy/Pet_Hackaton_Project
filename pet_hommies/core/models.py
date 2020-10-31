@@ -1,8 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
 class AnimalKind(models.Model):
     name = models.CharField(max_length=30, primary_key=True)
 
@@ -68,10 +66,10 @@ class Animal(models.Model):
     tail = models.ForeignKey(Tail, on_delete=models.CASCADE)
     breed = models.ForeignKey(Breed, on_delete=models.CASCADE)
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
-    mark_id = models.IntegerField(primary_key=True)
+    mark_id = models.IntegerField(unique=True)
     date_sterilization = models.CharField(max_length=30)
     socialized = models.BooleanField
-    admission_id = models.CharField(max_length=20, primary_key=True)
+    admission_id = models.CharField(max_length=20, unique=True)
     admission_id_date = models.DateField
     catch_id = models.CharField(max_length=20)
     catch_address = models.TextField
@@ -79,10 +77,10 @@ class Animal(models.Model):
     holder_name = models.TextField
     individual_entity = models.TextField
     admission_date = models.DateField
-    admission_id_2 = models.CharField(max_length=20, primary_key=True)
+    admission_id_2 = models.CharField(max_length=20, unique=True)
     knock_out_date = models.DateField
     knock_out_reason = models.TextField
-    knock_out_id = models.CharField(primary_key=True, max_length=20)
+    knock_out_id = models.CharField(unique=True, max_length=20)
     worker_name = models.CharField(max_length=50)
     departure_reason = models.ForeignKey(DepartureReason, on_delete=models.CASCADE)
     parasite_treatment_id = models.IntegerField
