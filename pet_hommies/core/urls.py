@@ -4,5 +4,5 @@ app_name = "animals"
 # app_name will help us do a reverse look-up latter.
 urlpatterns = [
     path('animals/', AnimalView.as_view()),
-    path('get_animals/', AnimalInfoView.as_view())
+    path('get_animals/', AnimalInfoView.as_view()),
 ]
