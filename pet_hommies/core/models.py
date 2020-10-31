@@ -16,6 +16,32 @@ class Gender(models.Model):
     name = models.CharField(max_length=30, primary_key=True)
 
 
+class Color(models.Model):
+    animal_kind = models.ForeignKey(AnimalKind, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+
+
+class Wool(models.Model):
+    animal_kind = models.ForeignKey(AnimalKind, on_delete=models.CASCADE)
+    color = models.CharField(max_length=30)
+
+
+class Ears(models.Model):
+    type = models.CharField(max_length=30)
+
+
+class Organization(models.Model):
+    name = models.TextField()
+
+
+class Home(models.Model):
+    address = models.TextField()
+    organization = models.ForeignKey(to=Organization, on_delete=models.DO_NOTHING)
+    head_name = models.TextField()
+    official_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=10)
+
+
 class Tail(models.Model):
     tail_type = models.TextField
 
