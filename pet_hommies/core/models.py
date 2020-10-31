@@ -12,9 +12,15 @@ class Breed(models.Model):
     class Meta:
         unique_together = ('animal_kind', 'name')
 
+    def __str__(self):
+        return f'{self.name} для {self.animal_kind.name}'
+
 
 class Gender(models.Model):
     name = models.CharField(max_length=30, unique=True)
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Color(models.Model):
@@ -24,6 +30,9 @@ class Color(models.Model):
     class Meta:
         unique_together = ('animal_kind', 'name')
 
+    def __str__(self):
+        return f'{self.name} для {self.animal_kind.name}'
+
 
 class Wool(models.Model):
     animal_kind = models.ForeignKey(AnimalKind, on_delete=models.DO_NOTHING)
@@ -32,13 +41,22 @@ class Wool(models.Model):
     class Meta:
         unique_together = ('animal_kind', 'type')
 
+    def __str__(self):
+        return f'{self.type} для {self.animal_kind.name}'
+
 
 class Ears(models.Model):
     type = models.CharField(max_length=30, unique=True)
 
+    def __str__(self):
+        return f'{self.type}'
+
 
 class Organization(models.Model):
     name = models.TextField(unique=True)
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Home(models.Model):
@@ -48,21 +66,36 @@ class Home(models.Model):
     official_name = models.CharField(max_length=100, null=True, blank=True)
     phone_number = models.CharField(max_length=10, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.address}, {self.phone_number}'
+
 
 class Tail(models.Model):
     type = models.TextField(unique=True)
+
+    def __str__(self):
+        return f'{self.type}'
 
 
 class DepartureReason(models.Model):
     reason_type = models.TextField(unique=True)
 
+    def __str__(self):
+        return f'{self.reason_type}'
+
 
 class DeathReason(models.Model):
     death_reason = models.TextField(unique=True, blank=True, null=True)
 
+    def __str__(self):
+        return f'{self.death_reason}'
+
 
 class EuthanasiaReason(models.Model):
     reason = models.TextField(unique=True)
+
+    def __str__(self):
+        return f'{self.reason}'
 
 
 class Animal(models.Model):
