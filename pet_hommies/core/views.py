@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import AnimalKind, Animal
-from .serializer import AnimalTypeSerializer, AnimalInfoSerializer
+from .serializer import AnimalTypeSerializer
 
 
 class AnimalView(APIView):
@@ -17,10 +17,12 @@ class AnimalView(APIView):
         return Response({"animal types": request.data['hello']})
 
 
-class AnimalInfoView(APIView):
+class MainAnimalInfoView(APIView):
     def get(self, request):
         animals = Animal.objects.filter(socialized=True)
-        serializer = AnimalInfoSerializer(animals, many=True)
-        return Response({"animals": serializer.data})
-
-
+        interesting_info_animals = [{"color": a.color.name, "breed": a.breed_id, "age": a.age, "weight": a.weight,
+                                     "date_sterilization": a.date_sterilization, "gender_id": a.gender_id,
+                                     'vaccine_date': a.vaccine_dates} for a
+                                    in list(animals)]
+        # serializer = AnimalInfoSerializer(interesting_info_animals, many=True)
+        return Response({"animals": interesting_info_animals})
