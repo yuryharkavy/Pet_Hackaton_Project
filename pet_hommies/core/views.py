@@ -1,7 +1,7 @@
 # Create your views here.
 import os
 
-from django.http import HttpResponseNotFound, FileResponse
+from django.http import FileResponse, HttpResponse
 from docxtpl import DocxTemplate
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -24,7 +24,7 @@ class AnimalView(APIView):
 class AnimalCardView(View):
     def get(self, request, animal_id):
         animal = Animal.objects.get(id=int(animal_id))
-        doc = DocxTemplate('/Users/yuranous/PycharmProjects/Pet_Hackaton_Project/pet_hommies/core/templates/animal_card.docx')
+        doc = DocxTemplate('/Users/dimasce/Desktop/Pet_Hackaton_Project/pet_hommies/core/templates/animal_card.docx')
         context = {
             'card_id': animal.card_id,
             'address': animal.home.address,
@@ -35,13 +35,12 @@ class AnimalCardView(View):
 
         try:
             with open('temp.doc', 'rb') as f:
-                response = FileResponse(f.read(), filename='карточка.docx', as_attachment=True)
+                response = HttpResponse(f, content_type='application/msword')
         except IOError:
             # handle file not exist case here
-            response = HttpResponseNotFound('<h1>File not exist</h1>')
+            response = HttpResponse('<h1>File not exist</h1>')
         os.remove('temp.doc')
         return response
-
 
 class MainAnimalInfoView(APIView):
     def get(self, request):
